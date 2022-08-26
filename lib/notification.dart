@@ -37,7 +37,6 @@ class NotificationPush {
 
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       var payLoad = message.data;
-      print(jsonEncode(payLoad));
       //  if (payLoad["type"] == "new_order") {
       print(jsonEncode(payLoad));
       // Navigator.push(context, MaterialPageRoute(builder: (context) {

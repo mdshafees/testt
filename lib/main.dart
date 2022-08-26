@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/notification.dart';
+import 'package:flutter_application_1/secondScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -115,11 +117,36 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: null,
+            onPressed: _incrementCounter,
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+          FloatingActionButton(
+            heroTag: null,
+            onPressed: () {
+              Navigator.of(context).push(new SecondPageRoute());
+            },
+            child: const Icon(Icons.home),
+          ),
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+}
+
+class SecondPageRoute extends CupertinoPageRoute {
+  SecondPageRoute()
+      : super(builder: (BuildContext context) => const SecondScreen());
+
+  // OPTIONAL IF YOU WISH TO HAVE SOME EXTRA ANIMATION WHILE ROUTING
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
+    return FadeTransition(opacity: animation, child: const SecondScreen());
   }
 }
